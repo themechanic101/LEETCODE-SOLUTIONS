@@ -7,24 +7,45 @@ public:
 
 // ((()())())
 
-        stack<char>st;
-        string ans;
-         
+        // stack<char>st;
+        // string ans; 
+        // for(auto ch: s){
+        //     if(ch == '('){
+        //         if(!st.empty()){
+        //             ans+=ch;
+        //     }
+        //     st.push(ch);
+        //     }else{
+        //         st.pop();
+        //         if(!st.empty()){
+        //             ans+=ch;            
+        //         }
+        //     }
+        // }
+        //   return ans;  
+
+// SECOND APPROACH 
+//  using counters
+ int counter =0;
+        string ans; 
         for(auto ch: s){
             if(ch == '('){
-                if(!st.empty()){
+                if(counter!=0){
                     ans+=ch;
             }
-            st.push(ch);
+            counter++;
             }else{
-                st.pop();
-                if(!st.empty()){
-                    ans+=ch;
-                    
+                counter--;
+                if(counter!=0){
+                    ans+=ch;            
                 }
             }
         }
-          return ans;                  
+          return ans;  
+
+
+
+
         }
        
       
