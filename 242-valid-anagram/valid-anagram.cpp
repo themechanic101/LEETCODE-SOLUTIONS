@@ -19,13 +19,14 @@ public:
             map[s[i]]++;
         }
         for (int i=0 ;i<t.size();i++){
+            // map.end() points to last+1 element of the map
             if(map.find(t[i])!= map.end()){
                 map[t[i]]--;
             }else{
                 return false;
             }  
         }
-
+// for accessing character use iterator.first and for accessing integer stored value use iterator.second
         for (auto items : map){
             if(items.second!=0)return false; 
         }
