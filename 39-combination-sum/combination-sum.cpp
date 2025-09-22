@@ -1,0 +1,37 @@
+class Solution {
+public:
+
+//  it is advisable to change the data given in the contest 
+// PICK AND NOT PICK APPROACH 
+
+    void combinational_sum(int ind ,int target, vector<int>& arr,vector<vector<int>>&ans,vector<int>&ds){
+        if(ind==arr.size()){
+            if(target==0){
+                ans.push_back(ds);
+            }
+            return;
+        }
+
+// pickup the element
+        if(arr[ind]<=target){
+            ds.push_back(arr[ind]);
+            // multiple picking allowed
+            combinational_sum(ind,target-arr[ind],arr,ans,ds);
+            ds.pop_back();
+        }
+
+        combinational_sum(ind+1,target,arr,ans,ds);
+    }
+
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+
+        vector<vector<int>> ans;
+        vector<int>ds;
+        combinational_sum(0,target,candidates,ans,ds);
+        return ans;
+    }
+
+
+
+};
