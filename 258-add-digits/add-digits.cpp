@@ -1,7 +1,7 @@
 class Solution {
 public:
     int addDigits(int num) {
-
+// all number are epossitive
         while(num>9){
             int ans=0 ,digit;
             while(num){
