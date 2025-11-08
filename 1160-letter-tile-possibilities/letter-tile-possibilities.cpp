@@ -8,7 +8,7 @@ public:
           
             vis[i]=true ;
             curr.push_back(tiles[i]);
-            combination(tiles,vis,result,curr+tiles[i]);
+            combination(tiles,vis,result,curr);
             vis[i]=false;
             curr.pop_back();
         }
