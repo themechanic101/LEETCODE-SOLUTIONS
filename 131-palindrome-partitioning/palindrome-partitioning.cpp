@@ -10,6 +10,7 @@ bool check(string& s , int left ,int right) {
     }
     return true;
 }
+public:
 void partition(vector<vector<string>>&ans,string s,int left,vector<string>&vec){
   if(left==s.size()){
     ans.push_back(vec);
