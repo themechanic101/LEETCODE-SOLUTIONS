@@ -5,7 +5,7 @@ bool word(string &s,int index,vector<int>&dp){
       if(index==s.size())return true;
       if(dp[index]!=-1) return dp[index];
 
-      if(st.find(s)!=st.end())return dp[index]= true;
+    //   if(st.find(s)!=st.end())return dp[index]= true;
 
       for(int i=1;i<=s.size();i++){
           string curr=s.substr(index,i);
