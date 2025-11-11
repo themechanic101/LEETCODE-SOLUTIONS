@@ -1,13 +1,14 @@
 class Solution {
 public:
+int path( vector<vector<int>>&dp,int row,int col,int m,int n ){
+    if(row==0 && col==0)return 1;
+    if(row<0 || col<0) return 0;
+    if(dp[row][col]!=-1)return dp[row][col];
+    return dp[row][col]=path(dp,row-1,col,m,n)+path(dp,row,col-1,m,n);
+}
     int uniquePaths(int m, int n) {
-            long long res = 1;
-        int N = m + n - 2;  
-        int r = min(m - 1, n - 1);
-
-        for (int i = 1; i <= r; i++) {
-            res = res * (N - r + i) / i;
-        }
-        return res;
+        vector<vector<int>>dp(m,vector<int>(n,-1));
+        int i=m-1,j=n-1;
+        return path(dp,i,j,m,n);
     }
 };
