@@ -4,7 +4,7 @@ long long  minimum(vector<vector<int>>&matrix , int row ,int col ,  vector<vecto
     // if(row<0 || col<0)return 0;
     if(col<0 || col>matrix.size()-1)return INT_MAX;
     if(row==0) return matrix[0][col];
-    if(dp[row][col]!=INT_MIN) return dp[row][col];
+    if(dp[row][col]!=100000) return dp[row][col];
 
     long long up=matrix[row][col]+minimum(matrix,row-1,col,dp);
     long long  d_left=matrix[row][col]+minimum(matrix,row-1,col-1,dp);
@@ -14,7 +14,7 @@ long long  minimum(vector<vector<int>>&matrix , int row ,int col ,  vector<vecto
 }
     int minFallingPathSum(vector<vector<int>>& matrix) {
         int n=matrix.size();
-        vector<vector<long long>>dp(n,vector<long long>(n,INT_MIN));
+        vector<vector<long long>>dp(n,vector<long long>(n,100000));
         long long ans =INT_MAX;
         for(int i=0;i<n;i++){
             ans=min(ans,minimum(matrix,n-1,i,dp));
