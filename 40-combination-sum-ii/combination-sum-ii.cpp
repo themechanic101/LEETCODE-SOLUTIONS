@@ -6,8 +6,6 @@ public:
         ans.push_back(ds);
         return;
     }
-// arr=candidates array
-// 
     for(int i=ind;i<arr.size();i++){
         // if same element in iteration then skip or not take the same element
         if(i>ind && arr[i]==arr[i-1])continue;
