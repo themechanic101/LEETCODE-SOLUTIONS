@@ -1,17 +1,15 @@
 class Solution {
 public:
     int countTriples(int n) {
-  int count = 0;
-        for (int a = 1; a <= n; ++a) {
-            for (int b = 1; b <= n; ++b) {
-                int c2 = a*a + b*b;
-                int c = (int) sqrt(c2);
-                if (c <= n && c*c == c2) {
-                    count++;
-                }
+   int res = 0;
+        for (int u = 2; u <= sqrt(n); u++) {
+            for (int v = 1; v < u; v++) {
+                if (~(u - v) & 1 || gcd(u, v) != 1) continue;
+                int c = u * u + v * v;
+                if (c > n) continue;
+                res += (n / c) << 1;
             }
         }
-        return count;
-
+        return res;
     }
 };
