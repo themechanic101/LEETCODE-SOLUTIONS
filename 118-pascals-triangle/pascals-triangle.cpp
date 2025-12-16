@@ -1,10 +1,10 @@
 class Solution {
 public:
-long long ncr(int n,int c){
+long long ncr(int n,int r){        //987/
     long long res=1;
-    for(int i=0;i<c;i++){
-        res=res*(n-i);
-        res=res/(i+1);
+    for(int i=0;i<r;i++){
+        res=res*(n-i)/(i+1);
+        //res=res/(i+1);
     }
     return res;
 }
