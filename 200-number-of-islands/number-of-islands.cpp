@@ -5,7 +5,7 @@ void solve(vector<vector<char>>& grid,int x,int y,int m,int n){
 
   if(grid[x][y] != '1')return ;
 
-grid[x][y]='0';
+grid[x][y]='x';
   solve(grid,x,y+1,m,n);
   solve(grid,x,y-1,m,n);
   solve(grid,x+1,y,m,n);
