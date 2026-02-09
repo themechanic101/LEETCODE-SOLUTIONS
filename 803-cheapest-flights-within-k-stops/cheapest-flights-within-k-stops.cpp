@@ -13,11 +13,12 @@ public:
         dist[src]=0;
         while(!q.empty()){
            auto it=q.front();
-        q.pop();
+           q.pop();
 
         int stops=it.first;
         int node=it.second.first;
         int cost=it.second.second;
+        if(stops>k)continue;
 
         for(auto i:adj[node]){
               int adjnode=i.first;
