@@ -1,35 +1,64 @@
-class Solution {
+class DSU {
 public:
-    void dfs( vector<vector<int>>&list, int s_node,vector<int>&vis) {
-        vis[s_node] = 1;
-        for (auto it : list[s_node]) {
-            if (!vis[it]) {
-                dfs(list, it, vis);
-            }
+    vector<int> parent, rank;
+
+
+    DSU(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; i++)
+            parent[i] = i;   
+    }
+
+   
+    int find(int x) {
+        if (parent[x] == x)
+            return x;
+        return parent[x] = find(parent[x]);
+    }
+
+   
+    void unite(int x, int y) {
+        int px = find(x);
+        int py = find(y);
+
+        if (px == py) return;   
+
+        if (rank[px] < rank[py]) {
+            parent[px] = py;
+        } 
+        else if (rank[px] > rank[py]) {
+            parent[py] = px;
+        } 
+        else {
+            parent[py] = px;
+            rank[px]++;
         }
     }
+};
+
+class Solution {
+public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size();
-        vector<vector<int>>list(n);
-        // adj matrix to list
+        DSU dsu(n);
+
+       
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (isConnected[i][j] == 1 && i != j) {
-                    list[i].push_back(j);
-                    list[j].push_back(i);
+            for (int j = i + 1; j < n; j++) {
+                if (isConnected[i][j] == 1) {
+                    dsu.unite(i, j);
                 }
             }
         }
 
-        vector<int>vis(n,0);
-        int cnt = 0;
-
+       
+        int provinces = 0;
         for (int i = 0; i < n; i++) {
-            if (!vis[i]) {
-                cnt++;
-                dfs(list, i, vis);
-            }
+            if (dsu.find(i) == i)
+                provinces++;
         }
-        return cnt;
+
+        return provinces;
     }
 };
