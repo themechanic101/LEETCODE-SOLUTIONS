@@ -1,31 +1,54 @@
+class DSU {
+public:
+    vector<int> parent, rank;
+
+
+    DSU(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; i++)
+            parent[i] = i;   
+    }
+
+   
+    int find(int x) {
+        if (parent[x] == x)
+            return x;
+        return parent[x] = find(parent[x]);
+    }
+
+   
+    void unite(int x, int y) {
+        int px = find(x);
+        int py = find(y);
+
+        if (px == py) return;   
+
+        if (rank[px] < rank[py]) {
+            parent[px] = py;
+        } 
+        else if (rank[px] > rank[py]) {
+            parent[py] = px;
+        } 
+        else {
+            parent[py] = px;
+            rank[px]++;
+        }
+    }
+};
 class Solution {
 public:
-
-void dfs(int node, vector<int>&visited, vector<vector<int>>&adj){
-    visited[node]=1;
-
-    for(auto it:adj[node]){
-        if(!visited[it])dfs(it,visited,adj);
-    }
-}
     int makeConnected(int n, vector<vector<int>>& connections) {
-        int cnt=0;
-        int edges=connections.size();
-        if(edges<n-1)return -1;
-       vector<vector<int>>adj(n);
 
-       for(auto i:connections){
-        adj[i[0]].push_back(i[1]);
-        adj[i[1]].push_back(i[0]);
-       }
+        if(connections.size()<n-1)return -1;
+       DSU dsu(n);
 
-       vector<int>visited(n,0);
-
+       for(auto e:connections){
+            dsu.unite(e[0],e[1]);
+       } 
+int cnt=0;
        for(int i=0;i<n;i++){
-        if(!visited[i]){
-            cnt++;
-            dfs(i,visited,adj);
-        }
+        if(dsu.parent[i]==i)cnt++;
        }
 
        return cnt-1;
