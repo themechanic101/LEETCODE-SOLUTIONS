@@ -1,6 +1,6 @@
 class Solution {
 public:
-int  possible(vector<int>& weights, int days,int capacity){
+bool possible(vector<int>& weights, int days,int capacity){
     int n=weights.size();
 
     int cnt=1;
@@ -15,9 +15,9 @@ int  possible(vector<int>& weights, int days,int capacity){
         }
     }
    
-  
+   if(cnt<=days)return true;
 
-   return cnt;
+   return false;
     
 }
     int shipWithinDays(vector<int>& weights, int days) {
@@ -32,14 +32,16 @@ int  possible(vector<int>& weights, int days,int capacity){
         while(low<=high){
             int mid=low+(high-low)/2;
             
-            if(possible(weights,days,mid)<=days){
-                
+            if(possible(weights,days,mid)){
+                ans=mid;
                 high=mid-1;
             }else{
                 low=mid+1;
             }
+
+
         }
 
-        return low;
+        return ans;
     }
 };
