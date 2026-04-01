@@ -2,6 +2,7 @@ class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
         int left = 0, right = nums.size() - 1;
+        //tjink in index whether it is even or odd based on two occurances of each element except for answer
         while (left < right) {
             int mid = (left + right) / 2;
             if (mid % 2 == 1) {
