@@ -8,8 +8,8 @@ public:
         for(auto x:prerequisites){
             int u=x[0];
             int v=x[1];
-            adj[u].push_back(v);
-            indegree[x[1]]++;
+            adj[v].push_back(u);
+            indegree[x[0]]++;
         }
 
     queue<int>q;
