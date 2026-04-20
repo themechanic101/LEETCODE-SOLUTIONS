@@ -11,26 +11,40 @@
  */
 class Solution {
 public:
-//  void postorder(TreeNode* root,vector<int>&arr){
-//       if(root==NULL) return;
-//     postorder(root->left,arr);
-     
-//       postorder(root->right,arr);
-//        arr.push_back(root->val);
-//    }
 
-int solve(TreeNode* root){
-    if(root == NULL)return  0 ;
 
-    int l=solve(root->left);
-    int r=solve(root->right);
 
-    return 1+max(l,r);
-}
     int maxDepth(TreeNode* root) {
         
+if(root ==NULL)return 0;
+        queue<TreeNode* >q;
 
-        return solve(root);
+        q.push(root);
+
+        int depth=0;
+        
+        while(!q.empty()){
+             depth++;
+
+             int qsize=q.size();
+
+             for(int i=0;i<qsize;i++){
+                TreeNode* node=q.front();
+
+                q.pop();
+
+               // if(node==NULL)continue;
+                if(node->left){
+                    q.push(node->left);
+                }
+                if(node->right){
+                    q.push(node->right);
+                }
+             }
+        }
+        
+
+        return depth;
 
     
 
