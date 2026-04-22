@@ -1,24 +1,37 @@
 class Solution {
 public:
-    bool solve(string& s, string& p, int i, int j) {
+  
+bool isMatch(string s, string p) { 
+    int m=s.size(),n=p.size();
 
-        if (j == p.size()) {
-            return s.size() == i;
-        }
+    vector<vector<bool>>dp(m+1,vector<bool>(n+1,false));
 
-        bool firstMatch = (i < s.size() && (s[i] == p[j] || p[j] == '.'));
+    //dp[i][j]>>true if s[i-1]matches with p[j-1]
 
-        if (j + 1 < p.size() && p[j + 1] == '*') {
-
-            return (solve(s, p, i, j + 2) ||
-                    (firstMatch && solve(s, p, i + 1, j)));
-        } else {
-
-            return firstMatch && solve(s, p, i + 1, j + 1);
-        }
-
+    dp[0][0]=true;
+    for(int i=1;i<=n;i++){
+          if(p[i-1]=='*')dp[0][i]=dp[0][i-2];
     }
-        bool isMatch(string s, string p) { 
-            return solve(s, p, 0, 0); 
+
+    for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p[j - 1] == s[i - 1] || p[j - 1] == '.') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else if (p[j - 1] == '*') {
+                    
+                    dp[i][j] = dp[i][j - 2];
+                
+                    if (p[j - 2] == s[i - 1] || p[j - 2] == '.') {
+                        dp[i][j] = dp[i][j] || dp[i - 1][j];
+                    }
+                }
             }
-    };
+        }
+
+        return dp[m][n];
+            
+            
+            
+            
+    }
+};
