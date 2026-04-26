@@ -3,6 +3,7 @@ public:
 
     void dfs(int current, int max, vector<int>& result) {
         if (current > max) return;
+        //cout<<current<<endl;
         result.push_back(current);
         for (int i = 0; i < 10; i++) {
             int next = current * 10 + i;
