@@ -1,19 +1,18 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-        unordered_map<char, int> mp;
-        int ans = -1;
+        int freq[26] = {0};
 
-        for (auto ch : s) {
-            mp[ch]++;
+        for (char c : s) {
+            freq[c - 'a']++;
         }
+
         for (int i = 0; i < s.size(); i++) {
-            if (mp[s[i]] == 1) {
-                ans = i;
-                break;
+            if (freq[s[i] - 'a'] == 1) {
+                return i;
             }
         }
-        
-        return ans;
+
+        return -1;       
     }
 };
