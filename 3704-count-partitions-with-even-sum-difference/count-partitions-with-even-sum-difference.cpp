@@ -9,7 +9,7 @@ public:
             if(abs(prefix-(sum-prefix))%2==0) cnt++;
         }
 
-        cout<<cnt<<endl;
+        
         return cnt;
     }
 };
