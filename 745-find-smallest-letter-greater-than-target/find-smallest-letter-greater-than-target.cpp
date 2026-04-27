@@ -1,16 +1,19 @@
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
-        vector<int> ans;
-        for(int i=0;i<letters.size();i++){
-            int val=letters[i]-'a';
-            ans.push_back(val);
+        const int n=letters.size();
+        int l=0, r=n-1, ans=n;
+        while(l<=r){
+            int m=(r+l)/2;
+            if (target<letters[m]){
+                ans=m;
+                r=m-1;
+            }
+            else{
+                l=m+1;
+            }
         }
-        int pos=target-'a';
-        for(int i=0;i<ans.size();i++){
-            if(ans[i]>pos) return ans[i]+'a';
-        }
-        return letters[0];
+        return letters[ans%n];
         
     }
 };
