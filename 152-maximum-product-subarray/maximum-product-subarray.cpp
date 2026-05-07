@@ -1,24 +1,25 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-         int maxProd = nums[0];
+         int maxi = INT_MIN;
+        int prod=1;
 
-        // Outer loop picks the starting index
-        for (int i = 0; i < nums.size(); i++) {
-            // Initialize current product to 1
-            int prod = 1;
-
-            // Inner loop picks the ending index
-            for (int j = i; j < nums.size(); j++) {
-                // Multiply current number to product
-                prod *= nums[j];
-
-                // Update maximum product if needed
-                maxProd = max(maxProd, prod);
-            }
+        for(int i=0;i<nums.size();i++)
+        {
+          prod*=nums[i];
+          maxi=max(prod,maxi);
+          if(prod==0)
+           prod=1;
         }
+        prod=1;
+        for(int i=nums.size()-1;i>=0;i--)
+        {
+          prod*=nums[i];
 
-        // Return the result
-        return maxProd;
+          maxi=max(prod,maxi);
+          if(prod==0)
+           prod=1;
+        }
+        return maxi;
     }
 };
