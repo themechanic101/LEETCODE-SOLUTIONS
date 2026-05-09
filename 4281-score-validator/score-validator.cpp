@@ -5,7 +5,7 @@ public:
         vector<int> ans;
         for(int i=0;i<events.size();i++){
             
-            if(events[i]=="0" ||events[i]=="1" || events[i]=="2" || events[i]=="3" ||events[i]=="4"||events[i]=="5" ||events[i]=="6" ){
+            if(events[i]>="0" && events[i]<="6" ){
                 score+=stoi(events[i]);
             }
             else if(events[i]=="W") {
