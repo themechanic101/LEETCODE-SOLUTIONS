@@ -20,6 +20,6 @@ public:
             energy-=actual;
         }
 
-        return ans;
+        return (int)ans;
     }
 };
