@@ -3,7 +3,7 @@ public:
     vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
         int n = A.size(), count = 0;
         vector<int> res(n);
-        vector<int> seen(51,0);
+        vector<int> seen(n+1,0);
 
         for (int i = 0; i < n; i++) {
             count += seen[A[i]];
