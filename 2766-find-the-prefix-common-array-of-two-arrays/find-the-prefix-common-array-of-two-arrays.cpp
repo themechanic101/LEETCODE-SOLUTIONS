@@ -2,6 +2,7 @@ class Solution {
 public:
     vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
         int n = A.size(), count = 0;
+        //n
         vector<int> res(n);
         vector<int> seen(n+1,0);
 
