@@ -18,9 +18,9 @@ public:
                 }
             }else{ //right sorted
                 if(nums[mid]<=target && target<=nums[high]){
-                    low=mid+1;
+                    low=mid+1;//right half
                 }else{
-                    high=mid-1;
+                    high=mid-1;//left half
                 }
             }
         }
