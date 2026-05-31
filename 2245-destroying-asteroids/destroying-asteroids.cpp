@@ -1,14 +1,21 @@
 class Solution {
 public:
     bool asteroidsDestroyed(int mass, vector<int>& asteroids) {
-        sort(asteroids.begin(),asteroids.end());
-        long long t=mass;
-
-        for(int i=0;i<asteroids.size();i++){
-            if(asteroids[i]<=t)t+=asteroids[i];
-            else if(asteroids[i]>t)return false;
+        int maxasteroid = 0;
+        for(int a : asteroids) {
+            if(a > maxasteroid) maxasteroid = a;
         }
-
+        vector<int> freq(maxasteroid + 1, 0);
+        for(int a : asteroids) {
+            freq[a]++;
+        }
+        long long currentmass = mass;
+        for(int i = 1; i <= maxasteroid; i++) {
+            if(freq[i] > 0) {
+                if(i > currentmass) return false;
+                currentmass += (long long)i * freq[i];
+            }
+        }
         return true;
     }
 };
