@@ -3,7 +3,7 @@ public:
    int maxLength(vector<int>& nums) {
     int ans = 0;
     for(int i = 0; i < nums.size(); ++i){
-        long long gcdVal = nums[i], lcmVal = nums[i], prod = 1, maxLcm = 2520;
+        int gcdVal = nums[i], lcmVal = nums[i], prod = 1, maxLcm = 2520;
         for(int j = i; j < nums.size(); ++j){
             prod = prod*nums[j];
             if(prod > maxLcm) break;
