@@ -23,7 +23,7 @@ bool possible(vector<int>& weights, int days,int capacity){
     int shipWithinDays(vector<int>& weights, int days) {
         int low=*max_element(weights.begin(),weights.end());
         
-        int high;
+        int high=0;
         for(auto w:weights)high+=w;
    
 
