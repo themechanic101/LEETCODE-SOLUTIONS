@@ -1,0 +1,29 @@
+class Solution {
+public:
+   
+    void dfs(int st,vector<vector<pair<int,int>>> &adj,vector<bool> &visited,int &ans){
+        visited[st]=1;
+        for(auto &p:adj[st]){
+            int neigh=p.first;
+            int cost=p.second;
+            ans=min(ans,cost);
+            if(!visited[neigh])
+            dfs(neigh,adj,visited,ans);
+        }
+    }
+    int minScore(int n, vector<vector<int>>& roads) {
+        vector<vector<pair<int,int>>> adj(n+1);
+        vector<bool> visited(n+1,0);
+        int ans=INT_MAX;
+        for(int i=0;i<roads.size();i++){
+            int u=roads[i][0];
+            int v=roads[i][1];
+            int w=roads[i][2];
+            adj[u].push_back({v,w});
+            adj[v].push_back({u,w});
+        }
+        dfs(1,adj,visited,ans);
+        return ans;
+
+    }
+};
