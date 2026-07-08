@@ -4,19 +4,19 @@ public:
         int i=0;
         int j=0;
         int sum=0;
-        int mn=INT_MAX;
+        int ans=INT_MAX;
         while(j<nums.size()){
             sum+=nums[j];
             while(sum>=target){
                 sum-=nums[i];
-                mn=min(j-i+1,mn);
+                ans=min(j-i+1,ans);
                 i++;
             }
             j++;
         }
-        if(mn==INT_MAX){
+        if(ans==INT_MAX){
             return 0;
         }
-        return mn;
+        return ans;
     }
 };
