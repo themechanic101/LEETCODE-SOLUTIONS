@@ -1,30 +1,19 @@
 class Solution {
 public:
- int solve(vector<int>& nums, int k){
-        if(k < 0) return 0;
-        int n = nums.size();
-        int subs = 0;
-        int cnt = 0;
-        int r = 0, l = 0;
 
-        while(r < n){
-            if(nums[r] % 2 != 0) cnt++; // Found an odd number
-
-            // If we exceed our budget of k odd numbers, shrink from the left
-            while(cnt > k){
-                if(nums[l] % 2 != 0) cnt--;
-                l++;
-            }
-
-            // All subarrays from l to r are valid
-            subs += r - l + 1;
-            r++;
-        }
-        return subs;
-    }
     int numberOfSubarrays(vector<int>& nums, int k) {
-        //excatly_k=atmost_k-atmost_k-1
-       return solve(nums,k)-solve(nums,k-1);
+       int n = nums.size();
+        vector<int> cnt(n + 1, 0);
+        cnt[0] = 1;
+        int ans = 0, t = 0;
+        for (int v : nums) {
+            t += v & 1;
+            if (t - k >= 0) {
+                ans += cnt[t - k];
+            }
+            cnt[t]++;
+        }
+        return ans;
         
     }
 };
