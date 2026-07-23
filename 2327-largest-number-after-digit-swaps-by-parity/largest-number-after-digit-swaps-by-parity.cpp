@@ -1,33 +1,26 @@
 class Solution {
 public:
     int largestInteger(int num) {
-        string s = to_string(num);
-        vector<int> odd, even;
-
-        // Separate digits
-        for (char c : s) {
-            int d = c - '0';
-            if (d % 2 == 0) even.push_back(d);
-            else odd.push_back(d);
+        int t = num ;
+        priority_queue<int> o ;
+        priority_queue<int> e ;
+        while(t){
+            int d = t% 10 ;
+            t = t/10 ;
+            if( d%2 == 0 ) e.push(d) ;
+            else o.push(d) ;
         }
-
-    
-        sort(odd.rbegin(), odd.rend());
-        sort(even.rbegin(), even.rend());
-
-        int oi = 0, ei = 0;
-        string ans = "";
-
-        
-        for (char c : s) {
-            int d = c - '0';
-            if (d % 2 == 0) {
-                ans += char('0' + even[ei++]);
-            } else {
-                ans += char('0' + odd[oi++]);
+        string s = to_string(num) ;
+        for(char c : s ){
+            if( (c-'0' )% 2 == 0 ){
+                t = t*10 + e.top() ;
+                e.pop() ;
+            }
+            else{
+                t = t*10 + o.top() ;
+                o.pop() ;
             }
         }
-
-        return stoi(ans);
+        return t ;
     }
 };
