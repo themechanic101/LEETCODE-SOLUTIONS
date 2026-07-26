@@ -1,43 +1,26 @@
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        vector<int>mp(26,0);
+      unordered_map<char,int>mp;
 
-        for(char &ch:tasks){
-            mp[ch-'A']++;
-        }
+      for(char ch:tasks)mp[ch]++;
 
-        int time=0;
+      int maxf=0;
+      for(auto &t:mp){
+        maxf=max(maxf,t.second);
+      }
 
-        priority_queue<int>pq;
+      int cntmax=0;
+
+      for(auto it :mp){
+        if(it.second==maxf)cntmax++;
+      }
 
 
-        for(int i=0;i<26;i++){
-            if(mp[i]>0)pq.push(mp[i]);
-        }
+      int ans=(maxf-1)*(n+1)+cntmax;
 
-  //use the ch with highest frequemcy first
-        while(!pq.empty()){
-            vector<int>temp;
+      ans=max((int)tasks.size(),ans);
 
-            for(int i=1;i<=n+1;i++){
-                if(!pq.empty()){
-                    int freq=pq.top();
-                    pq.pop();
-                    freq--;
-                    temp.push_back(freq);
-                }
-            }
-
-            for(int &t :temp){
-                if(t>0)pq.push(t);
-            }
-
-            if(pq.empty())time+=temp.size();
-            else time+=n+1;//n+1 because each block is of this size
-
-        }
-
-        return time;
+      return ans;
     }
 };
