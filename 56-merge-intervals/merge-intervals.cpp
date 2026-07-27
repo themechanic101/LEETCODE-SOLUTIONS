@@ -19,6 +19,7 @@ public:
 //             ans.push_back({start,end});
 //         }
 //   return ans;
+if (intervals.empty()) return {};
 
 int n=intervals.size();
 sort(intervals.begin(),intervals.end());
