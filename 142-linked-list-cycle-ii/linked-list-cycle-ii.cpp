@@ -9,27 +9,23 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-         ListNode* left = head;
-        ListNode* right = head;
-        while (right != NULL && right->next != NULL) {
-            left = left->next;
-            right = right->next->next;
+        unordered_set<ListNode*> visited;
 
-            if (left == right) {
-                break;
+        // Start traversing from head
+        while (head != NULL) {
+            // If current node is already in set, it's the start of loop
+            if (visited.find(head) != visited.end()) {
+                return head;
             }
-        }
-        
-        if (right == NULL || right->next == NULL) {
-            return NULL;
-        }
-        left = head;
-        while (left != right) {
-            left = left->next;
-            right = right->next;
-        }
-        
 
-        return left;
+            // Otherwise, insert current node into set
+            visited.insert(head);
+
+            // Move to the next node
+            head = head->next;
+        }
+
+        // If loop not found, return NULL
+        return NULL;
     }
 };
