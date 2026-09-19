@@ -11,7 +11,7 @@ public:
         for (int num = 0; num < subsets; num++) {
         
             vector<int> subset;
-//to check if ith bit set then include
+//to check if ith bit in num is set? then include
             for (int i = 0; i < n; i++) {
     
                 if (num & (1 << i)) {
