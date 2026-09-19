@@ -14,6 +14,8 @@ public:
             int t=vb+i;
             int row=(t-1)/n;
             int col=(t-1)%n;
+            //mathematical intuition for order reversal
+            //[5,0]>>[1,4]>>[2,3]>>[3,2]>>[4,1]>>[0,5] [x,y]>>x+y=n(const)
             int bv= board[n-1-row][row%2 ? n-1-col : col];
             int k=bv>0?bv:t;
             if(k==n*n)return rolls[vb]+1;
